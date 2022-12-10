@@ -2,16 +2,17 @@ import 'package:emailpos/widgets/custome_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginView extends ConsumerStatefulWidget {
-  const LoginView({super.key});
+class RegisterView extends ConsumerStatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends ConsumerState<LoginView> {
+class _RegisterViewState extends ConsumerState<RegisterView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
@@ -50,7 +51,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(onPressed: () {}, child: const Text("Sign up?")),
+                    TextButton(onPressed: () {}, child: const Text("Sign in?")),
                     SizedBox(
                       width: 200,
                       child: ElevatedButton(
