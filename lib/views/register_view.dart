@@ -51,7 +51,11 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(onPressed: () {}, child: const Text("Sign in?")),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/');
+                        },
+                        child: const Text("Sign in?")),
                     SizedBox(
                       width: 200,
                       child: ElevatedButton(

@@ -1,4 +1,5 @@
 import 'package:emailpos/views/login_view.dart';
+import 'package:emailpos/views/register_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginView(),
+      // home: const LoginView(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginView(),
+        '/register': (context) => const RegisterView()
+      },
     );
   }
 }

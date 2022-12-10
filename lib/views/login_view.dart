@@ -50,7 +50,11 @@ class _LoginViewState extends ConsumerState<LoginView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(onPressed: () {}, child: const Text("Sign up?")),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/register');
+                        },
+                        child: const Text("Sign up?")),
                     SizedBox(
                       width: 200,
                       child: ElevatedButton(
