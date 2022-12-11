@@ -1,3 +1,5 @@
+import 'package:emailpos/views/auth_checker.dart';
+import 'package:emailpos/views/home_view.dart';
 import 'package:emailpos/views/login_view.dart';
 import 'package:emailpos/views/register_view.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +22,10 @@ class MyApp extends StatelessWidget {
       // home: const LoginView(),
       initialRoute: '/',
       routes: {
-        '/': (context) => const LoginView(),
-        '/register': (context) => const RegisterView()
+        '/': (context) => const AuthCker(),
+        '/login': (context) => const LoginView(),
+        '/register': (context) => const RegisterView(),
+        '/home': (context) => const HomeView()
       },
     );
   }
