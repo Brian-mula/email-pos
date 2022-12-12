@@ -1,3 +1,4 @@
+import 'package:emailpos/providers/auth_provider.dart';
 import 'package:emailpos/widgets/custome_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +17,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
+    final auth = ref.watch(authenticationProvider);
     return Scaffold(
         body: Container(
       height: double.maxFinite,
@@ -53,7 +55,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   children: [
                     TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/');
+                          Navigator.pushNamed(context, '/login');
                         },
                         child: const Text("Sign in?")),
                     SizedBox(
@@ -63,7 +65,10 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                               backgroundColor: MaterialStateProperty.all(
                                   Colors.blue.shade600),
                               elevation: MaterialStateProperty.all(0)),
-                          onPressed: () {},
+                          onPressed: () async {
+                            await auth.register(context, emailController.text,
+                                passwordController.text);
+                          },
                           child: Text(
                             "Sign in",
                             style: theme.textTheme.bodyLarge!

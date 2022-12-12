@@ -9,6 +9,7 @@ class Authentication {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      Navigator.pushNamed(context, '/home');
     } on FirebaseAuthException catch (e) {
       await showDialog(
           context: context,
@@ -31,6 +32,7 @@ class Authentication {
       String email, String password, BuildContext context) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
+      Navigator.pushNamed(context, '/home');
     } on FirebaseAuthException catch (e) {
       await showDialog(
           context: context,

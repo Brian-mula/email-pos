@@ -1,3 +1,4 @@
+import 'package:emailpos/providers/auth_provider.dart';
 import 'package:emailpos/widgets/custome_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
+    final auth = ref.watch(authenticationProvider);
     return Scaffold(
         body: Container(
       height: double.maxFinite,
@@ -62,7 +64,10 @@ class _LoginViewState extends ConsumerState<LoginView> {
                               backgroundColor: MaterialStateProperty.all(
                                   Colors.blue.shade600),
                               elevation: MaterialStateProperty.all(0)),
-                          onPressed: () {},
+                          onPressed: () async {
+                            await auth.login(emailController.text,
+                                passwordController.text, context);
+                          },
                           child: Text(
                             "Sign in",
                             style: theme.textTheme.bodyLarge!
