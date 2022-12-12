@@ -14,4 +14,15 @@ class Products {
 
     return snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
   }
+
+  // ! search products
+
+  Future<List<ProductModel>> searchedProducts(String searchterm) async {
+    QuerySnapshot<Map<String, dynamic>> snapshot = await _firestore
+        .collection("products")
+        .where("title", isEqualTo: searchterm)
+        .get();
+
+    return snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+  }
 }
