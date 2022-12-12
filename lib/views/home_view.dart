@@ -47,7 +47,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     return Container(
                       margin: const EdgeInsets.only(bottom: 10, top: 0),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, "/product-details");
+                        },
                         child: ListTile(
                           leading: Container(
                             height: 150,
@@ -64,6 +66,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             style: theme.textTheme.bodyLarge,
                           ),
                           subtitle: Text(
+                            "Ksh.30000",
+                            style: theme.textTheme.bodyLarge!
+                                .copyWith(color: Colors.orange.shade600),
+                          ),
+                          trailing: Text(
                             "30",
                             style: theme.textTheme.bodyLarge!
                                 .copyWith(color: Colors.orange.shade600),
