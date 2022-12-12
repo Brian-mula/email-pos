@@ -72,12 +72,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     style: theme.textTheme.bodyLarge,
                                   ),
                                   subtitle: Text(
-                                    "Ksh.${data[index].price}",
+                                    "Ksh.${data[index].price.toString()}",
                                     style: theme.textTheme.bodyLarge!.copyWith(
                                         color: Colors.orange.shade600),
                                   ),
                                   trailing: Text(
-                                    "30",
+                                    data[index].quantity.toString(),
                                     style: theme.textTheme.bodyLarge!.copyWith(
                                         color: Colors.orange.shade600),
                                   ),

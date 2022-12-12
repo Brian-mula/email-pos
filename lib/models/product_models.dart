@@ -6,8 +6,8 @@ class ProductModel {
   String? id;
   String title;
   String category;
-  double price;
-  double quantity;
+  int price;
+  int quantity;
 
   ProductModel(
       {this.id,
@@ -29,7 +29,7 @@ class ProductModel {
       : id = doc.id,
         title = doc.data()!['title'],
         price = doc.data()!['price'],
-        quantity = doc.data()!['quantity'],
+        quantity = doc.data()!['quantity'] ?? 0,
         category = doc.data()!['category'];
 
   String toJson() => json.encode(toSnapshot());
