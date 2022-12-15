@@ -1,5 +1,4 @@
 import 'package:emailpos/providers/products_provider.dart';
-import 'package:emailpos/widgets/custome_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +14,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    final product = ref.watch(products);
+    var product = ref.watch(products);
+    var searchResults = ref.watch(searchedProduct);
+    var search = ref.watch(searchTerm);
+    void searchProducts(String term) {
+      setState(() {
+        search = term;
+        product = searchResults;
+      });
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -30,10 +38,19 @@ class _HomeViewState extends ConsumerState<HomeView> {
           padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
           child: Column(
             children: [
-              CustomeInput(
-                  controller: searchController,
-                  labelText: "Search in products",
-                  textInputType: TextInputType.text),
+              TextFormField(
+                onChanged: (value) => searchProducts(value),
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                    labelText: "Search in Products",
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide:
+                            BorderSide(color: Colors.blue.shade500, width: 1)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: BorderSide(color: Colors.orange.shade700))),
+              ),
               const SizedBox(
                 height: 10,
               ),
