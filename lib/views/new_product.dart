@@ -1,6 +1,12 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:emailpos/widgets/custome_input.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
 
 class NewProduct extends ConsumerStatefulWidget {
   const NewProduct({super.key});
@@ -13,6 +19,29 @@ class _NewProductState extends ConsumerState<NewProduct> {
   TextEditingController titleController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
+
+  String? imgUrl;
+  FirebaseStorage storage = FirebaseStorage.instance;
+  Future<void> uploadImage() async {
+    final picker = ImagePicker();
+    XFile? pickedImage;
+    try {
+      pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      final String fileName = path.basename(pickedImage!.name);
+      File file = File(pickedImage.path);
+      var snapshot =
+          await storage.ref().child("images/$fileName").putFile(file);
+
+      final downloadUrl = await snapshot.ref.getDownloadURL();
+
+      setState(() {
+        imgUrl = downloadUrl;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +79,9 @@ class _NewProductState extends ConsumerState<NewProduct> {
                 height: 20,
               ),
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await uploadImage();
+                  },
                   icon: const Icon(Icons.camera),
                   label: const Text("Upload Image"))
             ],

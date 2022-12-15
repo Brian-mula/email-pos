@@ -34,7 +34,7 @@ class ProductModel {
         price = doc.data()!['price'],
         quantity = doc.data()!['quantity'] ?? 0,
         category = doc.data()!['category'],
-        image = doc.data()!['image'];
+        image = doc.data()!['image'] ?? "";
 
   String toJson() => json.encode(toSnapshot());
 
