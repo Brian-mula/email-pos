@@ -31,6 +31,17 @@ class _HomeViewState extends ConsumerState<HomeView> {
         backgroundColor: Colors.blue.shade600,
         centerTitle: true,
         title: const Text("Products"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/new_product");
+              },
+              icon: const Icon(
+                Icons.add,
+                size: 30,
+                color: Colors.white,
+              ))
+        ],
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
