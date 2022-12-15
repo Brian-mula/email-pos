@@ -47,12 +47,21 @@ class _HomeViewState extends ConsumerState<HomeView> {
       ),
       drawer: Drawer(
         child: ListView(
-          children: const [
-            DrawerHeader(
-                child: CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage("assets/images/man.png"),
-            ))
+          children: [
+            UserAccountsDrawerHeader(
+                currentAccountPicture: const CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/man.png"),
+                ),
+                accountName: Text(auth.currentUser!.displayName!),
+                accountEmail: Text(auth.currentUser!.email!)),
+            const ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+            ),
+            const ListTile(
+              leading: Icon(Icons.store),
+              title: Text("New Product"),
+            )
           ],
         ),
       ),
