@@ -1,4 +1,5 @@
 import 'package:emailpos/providers/products_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,6 +12,7 @@ class HomeView extends ConsumerStatefulWidget {
 
 class _HomeViewState extends ConsumerState<HomeView> {
   TextEditingController searchController = TextEditingController();
+  FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
@@ -42,6 +44,17 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 color: Colors.white,
               ))
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: const [
+            DrawerHeader(
+                child: CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage("assets/images/man.png"),
+            ))
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
