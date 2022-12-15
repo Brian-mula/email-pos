@@ -9,3 +9,9 @@ final productsProvider = Provider<Products>((ref) {
 final products = FutureProvider<List<ProductModel>>((ref) {
   return ref.read(productsProvider).allProducts();
 });
+final searchTerm = StateProvider((ref) => "");
+final searchedProduct = FutureProvider<List<ProductModel>>((ref) async {
+  final search = ref.watch(searchTerm);
+  final prod = await ref.watch(products.future);
+  return prod.where((element) => element.title == search).toList();
+});

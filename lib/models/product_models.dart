@@ -6,31 +6,35 @@ class ProductModel {
   String? id;
   String title;
   String category;
-  double price;
-  double quantity;
+  String image;
+  int price;
+  int quantity;
 
   ProductModel(
       {this.id,
       required this.title,
       required this.quantity,
       required this.price,
-      required this.category});
+      required this.category,
+      required this.image});
+
+  ProductModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
+      : id = doc.id,
+        title = doc.data()!['title'],
+        price = doc.data()!['price'],
+        quantity = doc.data()!['quantity'] ?? 0,
+        category = doc.data()!['category'],
+        image = doc.data()!['image'] ?? "";
 
   Map<String, dynamic> toSnapshot() {
     return {
       'title': title,
       'category': category,
       'price': price,
-      'quantity': quantity
+      'quantity': quantity,
+      'image': image
     };
   }
-
-  ProductModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
-      : id = doc.id,
-        title = doc.data()!['title'],
-        price = doc.data()!['price'],
-        quantity = doc.data()!['quantity'],
-        category = doc.data()!['category'];
 
   String toJson() => json.encode(toSnapshot());
 
