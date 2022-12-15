@@ -1,3 +1,4 @@
+import 'package:emailpos/views/accounts.dart';
 import 'package:emailpos/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,11 +11,7 @@ class MainHomePage extends ConsumerStatefulWidget {
 }
 
 class _MainHomePageState extends ConsumerState<MainHomePage> {
-  List pages = [
-    const HomeView(),
-    const Text("Accounts page"),
-    const Text("Users page")
-  ];
+  List pages = [const HomeView(), const Accounts(), const Text("Users page")];
 
   int selectedIndex = 0;
   void _onTap(int index) {
