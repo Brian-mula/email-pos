@@ -53,7 +53,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 currentAccountPicture: const CircleAvatar(
                   backgroundImage: AssetImage("assets/images/man.png"),
                 ),
-                accountName: Text(auth.currentUser!.displayName!),
+                accountName:
+                    Text(auth.currentUser!.displayName ?? "Not Available"),
                 accountEmail: Text(auth.currentUser!.email!)),
             const ListTile(
               leading: Icon(Icons.home),

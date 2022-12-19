@@ -50,4 +50,8 @@ class Authentication {
 
   // ! auth state changes
   Stream<User?> get authStateChange => auth.authStateChanges();
+
+  Future<void> signOut() async {
+    await auth.signOut();
+  }
 }
