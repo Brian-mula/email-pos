@@ -17,12 +17,13 @@ class _HomeViewState extends ConsumerState<HomeView> {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     var product = ref.watch(products);
-    var searchResults = ref.watch(searchedProduct);
+    // final searchProduct = ref.watch(dbSearchedProds);
+    // var searchResults = ref.watch(searchedProduct);
     var search = ref.watch(searchTerm);
     void searchProducts(String term) {
       setState(() {
         search = term;
-        product = searchResults;
+        // product = searchResults;
       });
     }
 
