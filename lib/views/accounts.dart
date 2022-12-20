@@ -1,3 +1,4 @@
+import 'package:emailpos/providers/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +15,7 @@ class _AccountsState extends ConsumerState<Accounts> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = ref.watch(authenticationProvider);
     ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(),
@@ -40,7 +42,11 @@ class _AccountsState extends ConsumerState<Accounts> {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(onPressed: () {}, child: const Text("Logout"))
+            ElevatedButton(
+                onPressed: () async {
+                  await authProvider.signOut();
+                },
+                child: const Text("Logout"))
           ],
         ),
       ),

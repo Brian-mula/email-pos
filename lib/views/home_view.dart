@@ -17,12 +17,13 @@ class _HomeViewState extends ConsumerState<HomeView> {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     var product = ref.watch(products);
-    var searchResults = ref.watch(searchedProduct);
+    // final searchProduct = ref.watch(dbSearchedProds);
+    // var searchResults = ref.watch(searchedProduct);
     var search = ref.watch(searchTerm);
     void searchProducts(String term) {
       setState(() {
         search = term;
-        product = searchResults;
+        // product = searchResults;
       });
     }
 
@@ -52,7 +53,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 currentAccountPicture: const CircleAvatar(
                   backgroundImage: AssetImage("assets/images/man.png"),
                 ),
-                accountName: Text(auth.currentUser!.displayName!),
+                accountName:
+                    Text(auth.currentUser!.displayName ?? "Not Available"),
                 accountEmail: Text(auth.currentUser!.email!)),
             const ListTile(
               leading: Icon(Icons.home),

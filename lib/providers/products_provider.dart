@@ -6,7 +6,7 @@ final productsProvider = Provider<Products>((ref) {
   return Products();
 });
 
-final products = FutureProvider<List<ProductModel>>((ref) {
+final products = StreamProvider<List<ProductModel>>((ref) {
   return ref.read(productsProvider).allProducts();
 });
 final searchTerm = StateProvider((ref) => "");

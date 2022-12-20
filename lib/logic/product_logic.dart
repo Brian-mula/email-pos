@@ -10,22 +10,22 @@ class Products {
   bool isLoading = false;
   // ! get all products
 
-  Future<List<ProductModel>> allProducts() async {
+  Stream<List<ProductModel>> allProducts() async* {
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await _firestore.collection('products').get();
 
-    return snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+    yield snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
   }
 
   // ! search products
 
-  Future<List<ProductModel>> searchedProducts(String searchterm) async {
+  Stream<List<ProductModel>> searchedProducts(String searchterm) async* {
     QuerySnapshot<Map<String, dynamic>> snapshot = await _firestore
         .collection("products")
         .where("title", isEqualTo: searchterm)
         .get();
 
-    return snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+    yield snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
   }
 
   // !add new product
