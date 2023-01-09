@@ -4,12 +4,12 @@ import 'package:emailpos/views/home_view.dart';
 import 'package:emailpos/views/login_view.dart';
 import 'package:emailpos/views/new_product.dart';
 import 'package:emailpos/views/product_details.dart';
+import 'package:emailpos/views/products.dart';
 import 'package:emailpos/views/register_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PosRoutes {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
+  static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
       case '/':
@@ -24,6 +24,8 @@ class PosRoutes {
         return MaterialPageRoute(builder: (context) => const NewProduct());
       case '/home':
         return MaterialPageRoute(builder: (context) => const HomeView());
+      case '/products':
+        return MaterialPageRoute(builder: (context) => const ProductsView());
       default:
         return MaterialPageRoute(builder: (context) => const ErrorRoute());
     }

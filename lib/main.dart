@@ -1,10 +1,5 @@
 import 'package:emailpos/firebase_options.dart';
-import 'package:emailpos/views/auth_checker.dart';
-import 'package:emailpos/views/home_view.dart';
-import 'package:emailpos/views/login_view.dart';
-import 'package:emailpos/views/new_product.dart';
-import 'package:emailpos/views/product_details.dart';
-import 'package:emailpos/views/register_view.dart';
+import 'package:emailpos/routes/pos_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,14 +23,16 @@ class MyApp extends StatelessWidget {
       ),
       // home: const LoginView(),
       initialRoute: '/',
-      routes: {
-        '/': (context) => const AuthCker(),
-        '/login': (context) => const LoginView(),
-        '/register': (context) => const RegisterView(),
-        '/home': (context) => const HomeView(),
-        '/product-details': (context) => const ProductDetails(),
-        "/new_product": (context) => const NewProduct()
-      },
+      // routes: {
+      //   '/': (context) => const AuthCker(),
+      //   '/login': (context) => const LoginView(),
+      //   '/register': (context) => const RegisterView(),
+      //   '/home': (context) => const HomeView(),
+      //   '/product-details': (context) => const ProductDetails(),
+      //   "/new_product": (context) => const NewProduct(),
+      //   '/categories': (context) => const CategoriesPage()
+      // },
+      onGenerateRoute: (settings) => PosRoutes.generateRoute(settings),
     );
   }
 }
