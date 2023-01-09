@@ -18,16 +18,54 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
     return Scaffold(
         body: Container(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+            padding: const EdgeInsets.only(left: 0, right: 0),
             child: Column(
               children: [
                 Container(
-                  height: 200,
+                  height: 300,
                   width: double.maxFinite,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('assets/images/drinks.jpg'),
                           fit: BoxFit.cover)),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                          left: 20,
+                          top: 50,
+                          child: Text(
+                            "Hi",
+                            style: theme.textTheme.headline5!
+                                .copyWith(color: Colors.white),
+                          )),
+                      Positioned(
+                          left: 20,
+                          top: 80,
+                          child: Text(
+                            "Mulati Brian",
+                            style: theme.textTheme.headline5!
+                                .copyWith(color: Colors.white),
+                          ))
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 10, right: 10),
+                  height: 40,
+                  width: double.maxFinite,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(color: Colors.orange)),
+                        suffixIcon: const Icon(Icons.search),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(color: Colors.blue))),
+                  ),
                 )
               ],
             )));
