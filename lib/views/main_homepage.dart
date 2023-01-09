@@ -1,5 +1,6 @@
 import 'package:emailpos/views/accounts.dart';
 import 'package:emailpos/views/home_view.dart';
+import 'package:emailpos/views/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,7 +12,7 @@ class MainHomePage extends ConsumerStatefulWidget {
 }
 
 class _MainHomePageState extends ConsumerState<MainHomePage> {
-  List pages = [const HomeView(), const Accounts(), const Text("Users page")];
+  List pages = [const HomeView(), const ProductsView(), const Accounts()];
 
   int selectedIndex = 0;
   void _onTap(int index) {
@@ -34,8 +35,9 @@ class _MainHomePageState extends ConsumerState<MainHomePage> {
           onTap: _onTap,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
-            BottomNavigationBarItem(icon: Icon(Icons.people), label: "Users")
+            BottomNavigationBarItem(
+                icon: Icon(Icons.branding_watermark), label: "Products"),
+            BottomNavigationBarItem(icon: Icon(Icons.people), label: "Account")
           ]),
     );
   }

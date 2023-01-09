@@ -1,9 +1,11 @@
 import 'package:emailpos/firebase_options.dart';
 import 'package:emailpos/views/auth_checker.dart';
+import 'package:emailpos/views/categories.dart';
 import 'package:emailpos/views/home_view.dart';
 import 'package:emailpos/views/login_view.dart';
 import 'package:emailpos/views/new_product.dart';
 import 'package:emailpos/views/product_details.dart';
+import 'package:emailpos/views/products.dart';
 import 'package:emailpos/views/register_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +36,11 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterView(),
         '/home': (context) => const HomeView(),
         '/product-details': (context) => const ProductDetails(),
-        "/new_product": (context) => const NewProduct()
+        "/new_product": (context) => const NewProduct(),
+        '/categories': (context) => const CategoriesPage(),
+        '/products': (context) => const ProductsView()
       },
+      // onGenerateRoute: (settings) => PosRoutes.generateRoute(settings),
     );
   }
 }
