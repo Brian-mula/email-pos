@@ -68,6 +68,26 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             borderSide: const BorderSide(color: Colors.blue))),
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Top categories",
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                      Text(
+                        "See All",
+                        style: theme.textTheme.bodyLarge,
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
                 const Categories()
               ],
             )));

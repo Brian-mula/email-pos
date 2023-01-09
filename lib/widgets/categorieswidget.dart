@@ -1,3 +1,4 @@
+import 'package:emailpos/widgets/singleCategory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -58,7 +59,7 @@ class _CategoriesState extends ConsumerState<Categories>
             height: 300,
             width: double.maxFinite,
             child: TabBarView(controller: controller, children: const [
-              Text("Bakeries"),
+              SinngeCategory(),
               Text("Drinks"),
               Text("Fruits"),
               Text("Electronics"),
