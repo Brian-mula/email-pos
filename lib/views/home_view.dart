@@ -1,3 +1,4 @@
+import 'package:emailpos/widgets/categorieswidget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,7 +67,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             borderRadius: BorderRadius.circular(15),
                             borderSide: const BorderSide(color: Colors.blue))),
                   ),
-                )
+                ),
+                const Categories()
               ],
             )));
   }
