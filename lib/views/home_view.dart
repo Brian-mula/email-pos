@@ -80,9 +80,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         "Top categories",
                         style: theme.textTheme.bodyLarge,
                       ),
-                      Text(
-                        "See All",
-                        style: theme.textTheme.bodyLarge,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/categories');
+                        },
+                        child: Text(
+                          "See All",
+                          style: theme.textTheme.bodyLarge,
+                        ),
                       )
                     ],
                   ),
