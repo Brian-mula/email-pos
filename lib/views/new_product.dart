@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emailpos/models/product_models.dart';
 import 'package:emailpos/providers/products_provider.dart';
 import 'package:emailpos/widgets/custome_input.dart';
@@ -44,9 +45,25 @@ class _NewProductState extends ConsumerState<NewProduct> {
     }
   }
 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
+    List categories = ["Bakeries"];
+    String selectedCategory = categories.first;
+
+    _firestore
+        .collection("categories")
+        .get()
+        .then(onError: (e) => print("error getting categories"), (res) {
+      res.docs.map((doc) {
+        categories.add(doc.data());
+        print(categories);
+      });
+    });
+
     final product = ref.watch(productsProvider);
+    ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("New Product"),
@@ -84,6 +101,30 @@ class _NewProductState extends ConsumerState<NewProduct> {
                         textInputType: TextInputType.number),
                     const SizedBox(
                       height: 20,
+                    ),
+                    Text(
+                      "Select Category:",
+                      style: theme.textTheme.headline6!
+                          .copyWith(color: Colors.black45),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    DropdownButton(
+                        value: selectedCategory,
+                        isExpanded: true,
+                        items:
+                            categories.map<DropdownMenuItem<String>>((value) {
+                          return DropdownMenuItem<String>(
+                              value: value, child: Text(value));
+                        }).toList(),
+                        onChanged: (String? value) {
+                          setState(() {
+                            selectedCategory = value!;
+                          });
+                        }),
+                    const SizedBox(
+                      height: 10,
                     ),
                     ElevatedButton.icon(
                         onPressed: () async {
