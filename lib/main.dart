@@ -1,5 +1,6 @@
 import 'package:emailpos/firebase_options.dart';
 import 'package:emailpos/views/auth_checker.dart';
+import 'package:emailpos/views/cart_view.dart';
 import 'package:emailpos/views/categories.dart';
 import 'package:emailpos/views/home_view.dart';
 import 'package:emailpos/views/login_view.dart';
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         '/product-details': (context) => const ProductDetails(),
         "/new_product": (context) => const NewProduct(),
         '/categories': (context) => const CategoriesPage(),
-        '/products': (context) => const ProductsView()
+        '/products': (context) => const ProductsView(),
+        '/cart': (context) => const CartView()
       },
       // onGenerateRoute: (settings) => PosRoutes.generateRoute(settings),
     );

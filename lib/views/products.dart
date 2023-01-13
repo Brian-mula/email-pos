@@ -50,27 +50,65 @@ class _ProductsViewState extends ConsumerState<ProductsView> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: Colors.orange.shade600),
                 currentAccountPicture: const CircleAvatar(
                   backgroundImage: AssetImage("assets/images/man.png"),
                 ),
                 accountName:
                     Text(auth.currentUser!.displayName ?? "Not Available"),
                 accountEmail: Text(auth.currentUser!.email!)),
-            const ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.orange.shade600,
+              ),
+              title: Text(
+                "Home",
+                style: theme.textTheme.bodyLarge!
+                    .copyWith(color: Colors.orange.shade600),
+              ),
             ),
-            const ListTile(
-              leading: Icon(Icons.add),
-              title: Text("New Product"),
+            ListTile(
+              leading: Icon(
+                Icons.add,
+                color: Colors.orange.shade600,
+              ),
+              title: Text(
+                "New Product",
+                style: theme.textTheme.bodyLarge!
+                    .copyWith(color: Colors.orange.shade600),
+              ),
             ),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, "/categories");
               },
-              child: const ListTile(
-                leading: Icon(Icons.store),
-                title: Text("Categories"),
+              child: ListTile(
+                leading: Icon(
+                  Icons.store,
+                  color: Colors.orange.shade600,
+                ),
+                title: Text(
+                  "Categories",
+                  style: theme.textTheme.bodyLarge!
+                      .copyWith(color: Colors.orange.shade600),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/cart");
+              },
+              child: ListTile(
+                leading: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.orange.shade600,
+                ),
+                title: Text(
+                  "Cart",
+                  style: theme.textTheme.bodyLarge!
+                      .copyWith(color: Colors.orange.shade600),
+                ),
               ),
             ),
           ],
