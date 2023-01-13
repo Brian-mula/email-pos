@@ -61,9 +61,18 @@ class _ProductsViewState extends ConsumerState<ProductsView> {
               title: Text("Home"),
             ),
             const ListTile(
-              leading: Icon(Icons.store),
+              leading: Icon(Icons.add),
               title: Text("New Product"),
-            )
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/categories");
+              },
+              child: const ListTile(
+                leading: Icon(Icons.store),
+                title: Text("Categories"),
+              ),
+            ),
           ],
         ),
       ),
@@ -130,9 +139,9 @@ class _ProductsViewState extends ConsumerState<ProductsView> {
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(6),
-                                          image: const DecorationImage(
+                                          image: DecorationImage(
                                               image: NetworkImage(
-                                                  "https://cdn.pixabay.com/photo/2017/08/06/16/30/computer-2593921__340.jpg"),
+                                                  data[index].image),
                                               fit: BoxFit.cover)),
                                     ),
                                     title: Text(
