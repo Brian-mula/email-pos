@@ -53,7 +53,7 @@ class _CartViewState extends ConsumerState<CartView> {
         child: Column(
           children: [
             SizedBox(
-              height: 600,
+              height: 400,
               child: ListView.builder(
                   itemCount: 4,
                   itemBuilder: (context, index) {

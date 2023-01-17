@@ -1,17 +1,17 @@
-import 'package:emailpos/models/cart_model.dart';
 import 'package:emailpos/models/product_models.dart';
 
 class CartLogic {
-  final Map<String, CartModel> _items = {};
-  Map<String, CartModel> get items => _items;
-
-  void addProductToCart(ProductModel productModel) {
-    _items.putIfAbsent(productModel.id!, () {
-      return CartModel(
-          id: productModel.id,
+  final Map<String, dynamic> _cartItems = {};
+  Map<String, dynamic> get cartItems => _cartItems;
+  void addToCart(ProductModel productModel, int quantity) {
+    print("adding to cart${productModel.title}");
+    _cartItems.putIfAbsent(productModel.id!, () {
+      return ProductModel(
           title: productModel.title,
-          quantity: 1,
-          price: productModel.price);
+          quantity: quantity,
+          price: productModel.price,
+          category: productModel.category,
+          image: productModel.image);
     });
   }
 }

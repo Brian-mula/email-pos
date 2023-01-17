@@ -8,12 +8,12 @@ class ProductModel {
   String category;
   String image;
   int price;
-  int quantity;
+  int? quantity;
 
   ProductModel(
       {this.id,
       required this.title,
-      required this.quantity,
+      this.quantity,
       required this.price,
       required this.category,
       required this.image});

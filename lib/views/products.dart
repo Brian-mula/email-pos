@@ -1,3 +1,4 @@
+import 'package:emailpos/models/product_models.dart';
 import 'package:emailpos/providers/products_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class _ProductsViewState extends ConsumerState<ProductsView> {
         // product = searchResults;
       });
     }
+
+    final productLogic = ref.watch(productsProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -166,9 +169,16 @@ class _ProductsViewState extends ConsumerState<ProductsView> {
                                     const EdgeInsets.only(bottom: 10, top: 0),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.pushNamed(
-                                        context, "/product-details",
-                                        arguments: data[index]);
+                                    ProductModel productModel = ProductModel(
+                                        id: data[index].id,
+                                        title: data[index].title,
+                                        price: data[index].price,
+                                        category: data[index].category,
+                                        image: data[index].image);
+                                    productLogic.addToCart(productModel);
+                                    // Navigator.pushNamed(
+                                    //     context, "/product-details",
+                                    //     arguments: data[index]);
                                   },
                                   child: ListTile(
                                     leading: Container(
