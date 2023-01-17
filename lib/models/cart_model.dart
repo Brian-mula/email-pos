@@ -10,7 +10,12 @@ class CartModel {
   ProductModel? productModel;
 
   CartModel(
-      {this.id, this.price, this.quantity, this.title, this.productModel});
+      {this.id,
+      this.price,
+      this.quantity,
+      this.title,
+      this.productModel,
+      this.image});
 
   CartModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
       : id = doc.id,

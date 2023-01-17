@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emailpos/logic/cart_logic.dart';
 import 'package:emailpos/models/product_models.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -6,6 +7,9 @@ class Products {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final CollectionReference _products =
       FirebaseFirestore.instance.collection('products');
+
+  CartLogic cart = CartLogic();
+  int quantity = 1;
 
   bool isLoading = false;
   // ! get all products
@@ -34,5 +38,9 @@ class Products {
     isLoading = true;
     await _products.add(productModel.toSnapshot());
     Navigator.pushNamed(context, '/home');
+  }
+
+  void addToCart(ProductModel productModel) {
+    cart.addToCart(productModel, quantity);
   }
 }
