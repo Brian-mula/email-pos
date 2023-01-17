@@ -1,4 +1,5 @@
 import 'package:emailpos/models/product_models.dart';
+import 'package:emailpos/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +15,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
   Widget build(BuildContext context) {
     final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
     ThemeData theme = Theme.of(context);
+    final productLogic = ref.watch(productsProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -28,6 +30,18 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                     image: DecorationImage(
                         image: NetworkImage(product.image), fit: BoxFit.cover)),
               )),
+          Positioned(
+              right: 15,
+              top: 40,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/cart');
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                    size: 30,
+                  ))),
           Positioned(
               left: 0,
               right: 0,
@@ -72,7 +86,15 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Colors.orange.shade600)),
-                  onPressed: () {},
+                  onPressed: () {
+                    ProductModel productModel = ProductModel(
+                        id: product.id,
+                        title: product.title,
+                        price: product.price,
+                        category: product.category,
+                        image: product.image);
+                    productLogic.addToCart(productModel);
+                  },
                   icon: const Icon(
                     Icons.shopping_cart,
                     color: Colors.white,
