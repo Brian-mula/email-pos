@@ -205,7 +205,10 @@ class _CartViewState extends ConsumerState<CartView> {
                     SizedBox(
                         width: 150,
                         child: ElevatedButton(
-                            onPressed: () {}, child: const Text("CHECKOUT")))
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/select_delivery');
+                            },
+                            child: const Text("CHECKOUT")))
                   ],
                 ),
               )

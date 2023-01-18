@@ -8,6 +8,7 @@ import 'package:emailpos/views/new_product.dart';
 import 'package:emailpos/views/product_details.dart';
 import 'package:emailpos/views/products.dart';
 import 'package:emailpos/views/register_view.dart';
+import 'package:emailpos/views/select_delivery.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         "/new_product": (context) => const NewProduct(),
         '/categories': (context) => const CategoriesPage(),
         '/products': (context) => const ProductsView(),
-        '/cart': (context) => const CartView()
+        '/cart': (context) => const CartView(),
+        '/select_delivery': (context) => const SelectDelivery()
       },
       // onGenerateRoute: (settings) => PosRoutes.generateRoute(settings),
     );
