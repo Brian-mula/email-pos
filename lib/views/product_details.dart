@@ -1,4 +1,5 @@
 import 'package:emailpos/models/product_models.dart';
+import 'package:emailpos/providers/cart_provider.dart';
 import 'package:emailpos/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +17,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
     final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
     ThemeData theme = Theme.of(context);
     final productLogic = ref.watch(productsProvider);
+    final cart = ref.watch(cartProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -93,7 +95,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                         price: product.price,
                         category: product.category,
                         image: product.image);
-                    productLogic.addToCart(productModel);
+                    cart.addToCart(productModel, 1);
                   },
                   icon: const Icon(
                     Icons.shopping_cart,

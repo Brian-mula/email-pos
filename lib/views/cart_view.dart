@@ -1,4 +1,3 @@
-import 'package:emailpos/logic/cart_logic.dart';
 import 'package:emailpos/models/cart_model.dart';
 import 'package:emailpos/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class _CartViewState extends ConsumerState<CartView> {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     final cart = ref.watch(cartProvider);
-    List<CartModel> items = cart.getCartItems;
+    List<CartModel> items = cart.getCartItems();
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -92,8 +91,7 @@ class _CartViewState extends ConsumerState<CartView> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cartLogic
-                                                .getCartItems[index].title!,
+                                            items[index].title!,
                                             style: theme.textTheme.bodyLarge!
                                                 .copyWith(
                                                     color:
