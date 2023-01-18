@@ -1,4 +1,3 @@
-import 'package:emailpos/logic/cart_logic.dart';
 import 'package:emailpos/models/cart_model.dart';
 import 'package:emailpos/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class _CartViewState extends ConsumerState<CartView> {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     final cart = ref.watch(cartProvider);
-    List<CartModel> items = cart.getCartItems;
+    List<CartModel> items = cart.getCartItems();
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -46,9 +45,9 @@ class _CartViewState extends ConsumerState<CartView> {
             Container(
               padding: const EdgeInsets.only(right: 20),
               child: Text(
-                "3",
+                items.length.toString(),
                 style: theme.textTheme.headline5!
-                    .copyWith(color: Colors.green.shade600),
+                    .copyWith(color: Colors.red.shade600),
               ),
             )
           ],
@@ -77,9 +76,9 @@ class _CartViewState extends ConsumerState<CartView> {
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(6),
-                                            image: const DecorationImage(
+                                            image: DecorationImage(
                                                 image: NetworkImage(
-                                                    "https://images.unsplash.com/photo-1616645258469-ec681c17f3ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGFja2VkJTIwZm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
+                                                    items[index].image!),
                                                 fit: BoxFit.cover)),
                                       ),
                                       const SizedBox(
@@ -92,8 +91,7 @@ class _CartViewState extends ConsumerState<CartView> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cartLogic
-                                                .getCartItems[index].title!,
+                                            items[index].title!,
                                             style: theme.textTheme.bodyLarge!
                                                 .copyWith(
                                                     color:
@@ -103,7 +101,7 @@ class _CartViewState extends ConsumerState<CartView> {
                                             height: 10,
                                           ),
                                           Text(
-                                            "Ksh.300",
+                                            "Ksh. ${items[index].price.toString()}",
                                             style: theme.textTheme.bodyLarge!
                                                 .copyWith(
                                                     color:
@@ -188,7 +186,7 @@ class _CartViewState extends ConsumerState<CartView> {
                     CustomeRow(
                       theme: theme,
                       text: "Item total",
-                      amount: 600,
+                      amount: cart.getTotalPrice(),
                     ),
                     const SizedBox(
                       height: 20,
@@ -197,19 +195,33 @@ class _CartViewState extends ConsumerState<CartView> {
                     const SizedBox(
                       height: 20,
                     ),
-                    CustomeRow(theme: theme, amount: 718, text: "Total"),
+                    CustomeRow(
+                        theme: theme,
+                        amount: cart.getTotalPrice(),
+                        text: "Total"),
                     const SizedBox(
                       height: 25,
                     ),
                     SizedBox(
                         width: 150,
                         child: ElevatedButton(
-                            onPressed: () {}, child: const Text("CHECKOUT")))
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/select_delivery');
+                            },
+                            child: const Text("CHECKOUT")))
                   ],
                 ),
               )
-            : const Center(
-                child: Text("You do not have any item on the cart"),
+            : Center(
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/products');
+                    },
+                    child: Text(
+                      "Your cart is Empty!!!, go shop?",
+                      style: theme.textTheme.headline6!
+                          .copyWith(color: Colors.orange.shade600),
+                    )),
               ));
   }
 }
@@ -221,7 +233,7 @@ class CustomeRow extends StatelessWidget {
 
   final ThemeData theme;
   final String text;
-  final double amount;
+  final int amount;
 
   @override
   Widget build(BuildContext context) {
