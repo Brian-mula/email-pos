@@ -25,4 +25,13 @@ class CartLogic extends ChangeNotifier {
       return e.value;
     }).toList();
   }
+
+  // ! get item price total
+  int getTotalPrice() {
+    int total = 0;
+    _cartItems.forEach((key, value) {
+      total += value.price!;
+    });
+    return total;
+  }
 }
